@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const { User } = require('../../models/');
-
+const { getAllusers, addFriend, removeFriend } = require('../../controllers/user_controller')
 
 // Create a user
 router.post('/users', async (req, res) => {
@@ -13,7 +13,7 @@ router.post('/users', async (req, res) => {
         console.log(err);
     }
 });
-
+// /api/users/
 // Get all users
 router.get('/users', async (req, res) => {
     try {
@@ -91,6 +91,28 @@ router.delete('/users/:user_id', async (req, res) => {
         });
     } catch (err) {
         console.log(err);
+    }
+});
+
+// Add a friend to a user's friend list
+router.post('/users/:userId/friends/:friendId', async (req, res) => {
+    try {
+        await User.addFriend({ _id: req.params.friendId });
+        res.json({ message: 'Friend added successfully' });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Remove a friend from a user's friend list
+router.delete('/users/:userId/friends/:friendId', async (req, res) => {
+    try {
+        await User.removeFriend({ _id: req.params.friendId });
+        res.json({ message: 'Friend removed successfully' });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
