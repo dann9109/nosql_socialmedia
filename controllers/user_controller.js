@@ -88,7 +88,7 @@ async function deleteUser(req, res) {
 async function addFriend(req, res) {
     try {
         await User.updateOne(
-            { _id: userId },
+            { _id: user_Id },
             { $addToSet: { friends: friendId } }
         );
     } catch (err) {
@@ -100,7 +100,7 @@ async function addFriend(req, res) {
 async function removeFriend(req, res) {
     try {
         await User.updateOne(
-            { _id: userId },
+            { _id: user_Id },
             { $pull: { friends: friendId } }
         );
     } catch (err) {
