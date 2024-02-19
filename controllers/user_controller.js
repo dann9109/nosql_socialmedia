@@ -87,10 +87,12 @@ async function deleteUser(req, res) {
 
 async function addFriend(req, res) {
     try {
-        await User.updateOne(
-            { _id: user_Id },
-            { $addToSet: { friends: friendId } }
+        const newFriend = await User.findOneAndUpdate(
+            { _id: req.params.user_id },
+            { $addToSet: { friends: req.params.friendId } },
+            { new: true }
         );
+        res.json(newFriend)
     } catch (err) {
         console.log(err);
     }
@@ -99,10 +101,11 @@ async function addFriend(req, res) {
 
 async function removeFriend(req, res) {
     try {
-        await User.updateOne(
-            { _id: user_Id },
-            { $pull: { friends: friendId } }
+        const noFriend = await User.findOneAndUpdate(
+            { _id: req.params.user_id },
+            { $pull: { friends: req.params.friendId } }
         );
+        res.json(noFriend);
     } catch (err) {
         console.log(err);
     }

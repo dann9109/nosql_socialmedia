@@ -17,9 +17,9 @@ router.route('/:user_id').get(getUserbyId).put(updateUser).delete(deleteUser)
 
 
 // Add a friend to a user's friend list
-router.route('/:userId/friends').post(addFriend)
+router.route('/:user_id/friends/:friendId').post(addFriend)
 
 // Remove a friend from a user's friend list
-router.route(':userId/friends').delete(removeFriend)
+router.route('/:user_id/friends/:friendId').delete(removeFriend)
 
 module.exports = router;
