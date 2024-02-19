@@ -83,4 +83,20 @@ async function addReaction(req, res) {
         console.log(err);
     }
 }
-module.exports = { getThoughts, getOneThought, createThought, updateThought, deleteThought, addReaction }
+
+async function removeReaction(req, res) {
+    try {
+        const dbThoughtData = await Thought.findOneAndUpdate(
+            { _id: req.params.thought_id },
+            { $pull: { reactions: { reactionId: req.params.reactionId } } },
+            { runValidators: true, new: true }
+        );
+
+
+        res.json(dbThoughtData);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+};
+module.exports = { getThoughts, getOneThought, createThought, updateThought, deleteThought, addReaction, removeReaction }

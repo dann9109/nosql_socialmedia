@@ -37,15 +37,14 @@ async function getUserbyId(req, res) {
 
 async function updateUser(req, res) {
     try {
-        if (email) {
-            const user = await User.findByIdAndUpdate(req.params.user_id, {
-                $set: {
-                    email: email
-                }
-            }, { new: true });
 
-            res.json(user);
-        }
+        const user = await User.findByIdAndUpdate(req.params.user_id, {
+            $set: req.body
+
+        }, { new: true });
+
+        res.json(user);
+
 
         if (password) {
             const user = await User.findById(req.params.user_id);

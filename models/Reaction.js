@@ -3,9 +3,8 @@ const { Schema, Types } = require('mongoose')
 const Reactionschema = new Schema({
     reactionId: {
         type: Schema.Types.ObjectId,
-        default: () => {
-            new Types.ObjectId();
-        }
+        default: () => new Types.ObjectId()
+
     },
 
 
