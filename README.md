@@ -1,5 +1,7 @@
 # Social Network API
 
+<video controls src="scrnli_2_19_2024_5-29-02 PM.mp4" title="
+"></video>
 ## Description
 This is an API for a social network web application where users can share their thoughts, react to friends' thoughts, and create a friend list. It is built using Express.js for routing, a MongoDB database, and the Mongoose ODM.
 
