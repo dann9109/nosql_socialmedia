@@ -46,26 +46,26 @@ async function updateUser(req, res) {
         res.json(user);
 
 
-        if (password) {
-            const user = await User.findById(req.params.user_id);
+        // if (password) {
+        //     const user = await User.findById(req.params.user_id);
 
-            if (!user) return res.status(404).json({
-                message: 'User with ID not found'
-            });
+        //     if (!user) return res.status(404).json({
+        //         message: 'User with ID not found'
+        //     });
 
-            // Check if old password is correct
-            const pass_valid = await user.validatePass(password);
+        //     // Check if old password is correct
+        //     const pass_valid = await user.validatePass(password);
 
-            if (!pass_valid) return res.status(401).json({
-                message: 'The old password is incorrect'
-            });
+        //     if (!pass_valid) return res.status(401).json({
+        //         message: 'The old password is incorrect'
+        //     });
 
-            user.password = newPassword;
+        //     user.password = newPassword;
 
-            user.save();
+        //     user.save();
 
-            res.json(user);
-        }
+        //     res.json(user);
+        // }
 
     } catch (err) {
         console.log(err);
